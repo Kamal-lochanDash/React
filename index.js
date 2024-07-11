@@ -1,4 +1,7 @@
-const heading= React.createElement("h1",{id:"heading"},"Hello World")//<c2> Empty object is the place we will give attributes to the tags
+import React from "react";
+import ReactDOM from "react-dom/client";
+
+const heading= React.createElement("h1",{id:"heading"},"Hello World i am made by kamal")//<c2> Empty object is the place we will give attributes to the tags
     console.log(heading) // This heading is a react element/ js Object created by react   
     //<imp> Inside the Heading object we get something called props which are combination children tags and attributes
 //to manipulate dom in react , react need that individual node where it can do stuffs
@@ -27,7 +30,7 @@ root.render(heading) // -->this root.render is the Virtual Dom that renders the 
 
         const structure=React.createElement("div",{id:"parent"},
             React.createElement("div",{id:"child"},[
-                React.createElement("h1",{id:1},"I am h1 tag"),React.createElement("h2",{id:2},"i am a h2 tag")]))
+                React.createElement("h1",{id:1},"I am h1 tag , by kamal my sister name is ghusuri"),React.createElement("h2",{id:2},"i am a h2 tag")]))
                 console.log(structure)
 
                 
