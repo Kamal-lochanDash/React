@@ -1,3 +1,107 @@
-#heading{
-    color:red ;
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
+
+body{
+    padding: 20px;
+}
+
+.header{ 
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid black;
+    box-shadow: 4px 3px 10px rgb(206, 206, 206);
+    align-items: center;
+    
+}
+.logo{
+    width: 100px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+
+.nav-items >ul{
+    list-style-type: none;
+    display: flex;
+    padding-right: 0px 20px
+}
+
+.nav-items>ul>li{
+    margin: 10px;
+   padding: 10px;
+   font-size: 20px;
+}
+
+.res-container{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.body{
+   display: flex;
+   justify-content: center;
+   margin-top: 50px;
+}
+
+
+
+/* Cards */
+
+.card {
+    width: 300px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    margin: 20px;
+  }
+  
+  .card img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  
+  .card-content {
+    padding: 20px;
+  }
+  
+  .card-title {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .card-business {
+    color: #888;
+    margin-bottom: 5px;
+  }
+  
+  .card-rating {
+    color: #888;
+    margin-bottom: 10px;
+  }
+  
+  .card-text {
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 10px;
+  }
+  
+  .card-button {
+    display: inline-block;
+    padding: 8px 16px;
+    background-color: #007bff;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+    text-align: center;
+    transition: background-color 0.3s ease;
+  }
+  
+  .card-button:hover {
+    background-color: #0056b3;
+  }
+  
