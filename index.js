@@ -1858,10 +1858,11 @@ const restaurantList = [
   },
 ];
 
+
 const ResturantCard = (props) => { {/* we can destructure the prop as:-  (props)===({resName,cuisine}) */}
 
-    const {resName,cuisine}=props; //object destructuring
-  console.log(props)
+    const {restData}=props; //object destructuring
+  console.log(restData.data.name)
   /* 
   <c3> Output give me two objects
     -->{resName: 'payal', cuisine: 'Biriyani'}
@@ -1870,13 +1871,13 @@ const ResturantCard = (props) => { {/* we can destructure the prop as:-  (props)
   return (
     <div className="card">
       <img
-        src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/RX_THUMBNAIL/IMAGES/VENDOR/2024/4/15/645062ae-a4e4-4875-b2bb-2c1b4767db55_870818.JPG"
+        src={`https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/${restData.data.cloudinaryImageId}`}
         alt="Card Image"
       />
       <div className="card-content">
-        <div className="card-title">{props.resName}</div> {/* We can use the props insside the curley braces */}
-        <div className="card-business">{cuisine}</div>
-        <div className="card-rating">Rating: {props.rating}</div>
+        <div className="card-title">{restData.data.name}</div> {/* We can use the props insside the curley braces */}
+        <div className="card-business">{restData.data.cuisines.join(" , ") }</div>
+        <div className="card-rating">Rating:{restData.data.avgRating }</div>
         <div className="card-text">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
           convallis libero vitae mauris fermentum, sed dapibus odio ultricies.
@@ -1894,12 +1895,13 @@ const Body = () => {
     <div className="body">
       <div className="search">Search</div>
       <div className="res-container">
-        <ResturantCard resName="payal"  cuisine="Biriyani" rating="4.5"/>   {/*These "resName and
-         cuisine" are called as props in react , react will take this props and wrap it as an object this object
-         will refer to the parameter of the called function/component here in this case it is "ResturantCard"
-         */}
-        <ResturantCard resName="Kfc" cuisine="HOC Chicken , Burger" rating="5"/>
-
+        <ResturantCard restData={restaurantList[0]} /> {/* the object that is passed here accoring to that data will we shown */}
+        <ResturantCard restData={restaurantList[1]} />
+        <ResturantCard restData={restaurantList[2]} />
+        <ResturantCard restData={restaurantList[3]} />
+        <ResturantCard restData={restaurantList[4]} />
+        <ResturantCard restData={restaurantList[5]} />
+        <ResturantCard restData={restaurantList[6]} />
       </div>
     </div>
   );
