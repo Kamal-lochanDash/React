@@ -1861,12 +1861,13 @@ const restaurantList = [
 
 const ResturantCard = (props) => { {/* we can destructure the prop as:-  (props)===({resName,cuisine}) */}
 
-    const {restData}=props; //object destructuring
-  console.log(restData.data.name)
+      const {restData}=props;
+    const {name,cuisines,avgRating}=restData?.data; //object destructuring
+ 
   /* 
   <c3> Output give me two objects
     -->{resName: 'payal', cuisine: 'Biriyani'}
-    -->{resName: 'Kfc', cuisine: 'HOC Chicken , Burger'}
+    -->{resName: 'Kfc', cuisine: 'HOC Chicken , Burger'}                                            😺some Important changes are here
   */
   return (
     <div className="card">
@@ -1875,9 +1876,9 @@ const ResturantCard = (props) => { {/* we can destructure the prop as:-  (props)
         alt="Card Image"
       />
       <div className="card-content">
-        <div className="card-title">{restData.data.name}</div> {/* We can use the props insside the curley braces */}
-        <div className="card-business">{restData.data.cuisines.join(" , ") }</div>
-        <div className="card-rating">Rating:{restData.data.avgRating }</div>
+        <div className="card-title">{name}</div> {/* We can use the props insside the curley braces */}
+        <div className="card-business">{cuisines.join(" , ") }</div>
+        <div className="card-rating">Rating:{avgRating }</div>
         <div className="card-text">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
           convallis libero vitae mauris fermentum, sed dapibus odio ultricies.
@@ -1895,13 +1896,10 @@ const Body = () => {
     <div className="body">
       <div className="search">Search</div>
       <div className="res-container">
-        <ResturantCard restData={restaurantList[0]} /> {/* the object that is passed here accoring to that data will we shown */}
-        <ResturantCard restData={restaurantList[1]} />
-        <ResturantCard restData={restaurantList[2]} />
-        <ResturantCard restData={restaurantList[3]} />
-        <ResturantCard restData={restaurantList[4]} />
-        <ResturantCard restData={restaurantList[5]} />
-        <ResturantCard restData={restaurantList[6]} />
+       {restaurantList.map((restaurant)=>{  //in each iteration resturant contain the resturant object
+       
+        return <ResturantCard key={restaurant.data.id}  restData={restaurant}/>  //<c4> we need to return it, & each card onject that it return must have a unique key
+       })}
       </div>
     </div>
   );
