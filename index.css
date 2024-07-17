@@ -39,11 +39,7 @@ body{
     flex-wrap: wrap;
 }
 
-.body{
-   display: flex;
-   justify-content: center;
-   margin-top: 50px;
-}
+
 
 
 
@@ -89,9 +85,22 @@ body{
     line-height: 1.6;
     margin-bottom: 10px;
   }
+
+  .card-price{
+    color: black;
+    margin-bottom: 10px;
+    font-weight: bold;
+  }
   
+
+  .Button{
+    text-align: center;
+  }
   .card-button {
-    display: inline-block;
+    display: flex;
+    border: 1px solid black;
+    width: 100%;
+    
     padding: 8px 16px;
     background-color: #007bff;
     color: #fff;
@@ -103,5 +112,24 @@ body{
   
   .card-button:hover {
     background-color: #0056b3;
+  }
+
+  .filter-btn{
+    background-color: #a881af ;
+    border: none;
+    border-radius: 10px;
+    width: 100px;
+    height: 40px;
+    margin: 10px;
+  }
+
+  .filter-btn:hover{
+    background-color: #80669d;
+  }
+
+
+  .card-diliveryTime{
+    color: #888;
+    margin-bottom: 10px;
   }
   
