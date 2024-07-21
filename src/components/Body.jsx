@@ -5,27 +5,8 @@ import { useState } from "react";
 
 const Body = () => {
 
-    const [listOfResturant,setListOfResturant]=useState([{ //<imp>Update State: Use the state setter function (setListOfResturant) to update the list when filtering.
-        data:{
-           id: "74453",
-           name: "Domino's Pizza",
-         cloudinaryImageId: "bz9zkh2aqywjhpankb07",
-         cuisines: ["Pizzas"],
-         costForTwo: 40000,
-         deliveryTime: 45,
-         avgRating: "3.8"
- }
-    },  {
-        data:{
-            id: "410476",
-            name: "The Brooklyn Creamery - Healthy Ice Cream",
-          cloudinaryImageId: "ldtibwymvzehvmdwl8la",
-          cuisines: ["Desserts", "Ice Cream", "Healthy Food"],
-          costForTwo: 20000,
-          deliveryTime: 31,
-          avgRating: "4.4"
-  }
-    }]);/* whenever we call this useState function it returns a state variable*/
+    const [listOfResturant,setListOfResturant]=useState(   restaurantList          //<imp>Update State: Use the state setter function (setListOfResturant) to update the list when filtering.
+      );/* whenever we call this useState function it returns a state variable*/
 
     //! Normal variable declaration cannot be mutated after declaration
 // let listOfResturant=[
