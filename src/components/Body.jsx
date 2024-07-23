@@ -1,6 +1,6 @@
 import ResturantCard from "./ResturantCards";
 import restaurantList from "../utils/mockdata";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 
 const Body = () => {
@@ -8,32 +8,25 @@ const Body = () => {
     const [listOfResturant,setListOfResturant]=useState(   restaurantList          //<imp>Update State: Use the state setter function (setListOfResturant) to update the list when filtering.
       );/* whenever we call this useState function it returns a state variable*/
 
-    //! Normal variable declaration cannot be mutated after declaration
-// let listOfResturant=[
-//     {
-//         data:{
-//            id: "74453",
-//            name: "Domino's Pizza",
-//          cloudinaryImageId: "bz9zkh2aqywjhpankb07",
-//          cuisines: ["Pizzas"],
-//          costForTwo: 40000,
-//          deliveryTime: 45,
-//          avgRating: "3.8"
-//  }
-//     }, 
+      useEffect(()=>{  // this get executed after the render cycle is finished
+        fetchData();
+      },[]);
 
-//     {
-//         data:{
-//             id: "410476",
-//             name: "The Brooklyn Creamery - Healthy Ice Cream",
-//           cloudinaryImageId: "ldtibwymvzehvmdwl8la",
-//           cuisines: ["Desserts", "Ice Cream", "Healthy Food"],
-//           costForTwo: 20000,
-//           deliveryTime: 31,
-//           avgRating: "4.4"
-//   }
-//     }
-// ]
+      //if eror delete this
+      const fetchData=async()=>{
+        const data= await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=20.2960587&lng=85.8245398&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING");
+        console.log(data);
+        const json= await data.json();
+        console.log(json)
+       console.log(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
+       // Cards[4].card.card.gridElements.infoWithStyle.restaurants[0].info.id
+        //now we will rerender the ui with our new data that we have got
+
+        setListOfResturant(json.data.cards[4].card.card.gridElements.infoWithStyle.restaurants)
+
+      }
+      
+
 
 
     return (
@@ -52,7 +45,7 @@ const Body = () => {
                 /*After using hooks */
 
                 const filterList=listOfResturant.filter((resturant)=>{
-                    return resturant.data.avgRating>4
+                    return resturant.info.avgRating>4
                 })
 
                 setListOfResturant(filterList);  //whenever a react state variable updates it triggers a rerender of the components
@@ -64,7 +57,7 @@ const Body = () => {
             //in each iteration resturant contain the resturantList objects
   
             return (
-              <ResturantCard key={restaurant.data.id} restData={restaurant} />
+              <ResturantCard key={restaurant.info.id} restData={restaurant} />
             );
             //<c4> we need to return it, & each card object that it return must have a unique key
           })}

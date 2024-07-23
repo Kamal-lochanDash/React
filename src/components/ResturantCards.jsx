@@ -6,17 +6,19 @@ const ResturantCard = (props) => {
     }
   
     const { restData } = props;
-    const { name , cuisines, avgRating, costForTwo,deliveryTime} = restData?.data; //object destructuring
-  
+   // const { name , cuisines, avgRating} = restData?.info; //object destructuring
+     const { name , cuisines, avgRating, costForTwo} = restData?.info
+     const{deliveryTime}=restData?.info?.sla
     /* 
     <c3> Output give me two objects
       -->{resName: 'payal', cuisine: 'Biriyani'}
-      -->{resName: 'Kfc', cuisine: 'HOC Chicken , Burger'}                                            😺some Important changes are here
+      -->{resName: 'Kfc', cuisine: 'HOC Chicken , Burger'}             😺Here we have demonstrated the architecture 
+
     */
     return (
       <div className="card">
         <img
-          src={CDN_URL+restData.data.cloudinaryImageId}
+          src={CDN_URL+restData.info.cloudinaryImageId}
           alt="Card Image"
         />
         <div className="card-content">
@@ -24,8 +26,11 @@ const ResturantCard = (props) => {
           {/* We can use the props insside the curley braces */}
           <div className="card-business">{cuisines.join(" , ")}</div>
           <div className="card-rating">Rating:{avgRating}</div>
-          <div className="card-diliveryTime">{deliveryTime} minutes</div>
-        <div className="card-price">price:{costForTwo/100}</div>
+          <div className="card-diliveryTime">{deliveryTime//restData.info.sla.deliveryTime
+          } minutes</div>
+        <div className="card-price">price:{costForTwo
+}</div>
+
         
           <a href="#" className="card-button">
            Buy

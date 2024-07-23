@@ -1,7 +1,7 @@
 const restaurantList = [
     {
       type: "restaurant",
-      data: {
+    info: {
         type: "F",
         id: "74453",
         name: "Domino's Pizza",
@@ -121,7 +121,7 @@ const restaurantList = [
     },
     {
       type: "restaurant",
-      data: {
+    info: {
         type: "F",
         id: "410476",
         name: "The Brooklyn Creamery - Healthy Ice Cream",
@@ -241,7 +241,7 @@ const restaurantList = [
     },
     {
       type: "restaurant",
-      data: {
+    info: {
         type: "F",
         id: "81094",
         name: "Richie Rich Juices & Shakes",
@@ -361,7 +361,7 @@ const restaurantList = [
     },
     {
       type: "restaurant",
-      data: {
+    info: {
         type: "F",
         id: "311443",
         name: "Siddhi Icecream & Thick Shake",
@@ -481,7 +481,7 @@ const restaurantList = [
     },
     {
       type: "restaurant",
-      data: {
+    info: {
         type: "F",
         id: "307070",
         name: "Pizza Pie",
@@ -601,7 +601,7 @@ const restaurantList = [
     },
     {
       type: "restaurant",
-      data: {
+    info: {
         type: "F",
         id: "76858",
         name: "Feeling Hungry",
@@ -721,7 +721,7 @@ const restaurantList = [
     },
     {
       type: "restaurant",
-      data: {
+    info: {
         type: "F",
         id: "617279",
         name: "Malaxmi Fast Food",
@@ -840,7 +840,7 @@ const restaurantList = [
     },
     {
       type: "restaurant",
-      data: {
+    info: {
         type: "F",
         id: "469264",
         name: "Dessert House",
@@ -960,7 +960,7 @@ const restaurantList = [
     },
     {
       type: "restaurant",
-      data: {
+    info: {
         type: "F",
         id: "395204",
         name: "McDonald's Gourmet Burger Collection",
@@ -1081,7 +1081,7 @@ const restaurantList = [
     },
     {
       type: "restaurant",
-      data: {
+    info: {
         type: "F",
         id: "193541",
         name: "Behrouz Biryani",
@@ -1210,7 +1210,7 @@ const restaurantList = [
     },
     {
       type: "restaurant",
-      data: {
+    info: {
         type: "F",
         id: "475510",
         name: "Momos House",
@@ -1330,7 +1330,7 @@ const restaurantList = [
     },
     {
       type: "restaurant",
-      data: {
+    info: {
         type: "F",
         id: "127596",
         name: "Sabir Chicken",
@@ -1450,7 +1450,7 @@ const restaurantList = [
     },
     {
       type: "restaurant",
-      data: {
+    info: {
         type: "F",
         id: "64656",
         name: "Mahesh Pav Bhaji",
@@ -1570,7 +1570,7 @@ const restaurantList = [
     },
     {
       type: "restaurant",
-      data: {
+    info: {
         type: "F",
         id: "255204",
         name: "The Dango Cake Shop",
@@ -1689,7 +1689,7 @@ const restaurantList = [
     },
     {
       type: "restaurant",
-      data: {
+    info: {
         type: "F",
         id: "664656",
         name: "Cheezylicious Cafe",
