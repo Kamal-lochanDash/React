@@ -1,12 +1,19 @@
 import ResturantCard from "./ResturantCards";
 import restaurantList from "../utils/mockdata";
 import { useEffect, useState } from "react";
+import Shimmer from "./Shimmer";
 
 
 const Body = () => {
 
-    const [listOfResturant,setListOfResturant]=useState(   restaurantList          //<imp>Update State: Use the state setter function (setListOfResturant) to update the list when filtering.
+  console.log("rerendered")
+
+    const [listOfResturant,setListOfResturant]=useState( []  //restaurantList    (mow we do not need this resturantmockdata instead we can use a loader)       //<imp>Update State: Use the state setter function (setListOfResturant) to update the list when filtering.
       );/* whenever we call this useState function it returns a state variable*/
+
+      const [filteredResturant,setFilteredResturant]=useState([]);
+
+      const [searchText,setSearchText]=useState("");
 
       useEffect(()=>{  // this get executed after the render cycle is finished
         fetchData();
@@ -23,7 +30,11 @@ const Body = () => {
         //now we will rerender the ui with our new data that we have got
 
         setListOfResturant(json.data.cards[4].card.card.gridElements.infoWithStyle.restaurants)
+        setFilteredResturant(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
+      }
 
+      if(listOfResturant.length===0){
+        return <Shimmer/>
       }
       
 
@@ -32,6 +43,23 @@ const Body = () => {
     return (
       <div className="body">
         <div className="filter">
+          <div className="search">
+            <input type="text" className="search-box" value={searchText} onChange={(e)=>{
+             setSearchText(e.target.value);
+            }}/>
+            <button className="search-btn"
+            onClick={()=>{
+              console.log(searchText)
+              const userSearchResturant=listOfResturant.filter((resturant)=>{
+                return resturant.info.name.toLowerCase().includes(searchText.toLowerCase()); // <imp> .include function checks that is there any value simlar to the given value.
+              });
+
+              setFilteredResturant(userSearchResturant)
+
+
+            }}
+            >Search</button>
+          </div>
             <button className="filter-btn"
             onClick={()=>{
 
@@ -53,7 +81,7 @@ const Body = () => {
             >Toprated Resturants</button>
         </div>
         <div className="res-container">
-          {listOfResturant.map((restaurant) => {
+          {filteredResturant.map((restaurant) => {
             //in each iteration resturant contain the resturantList objects
   
             return (
