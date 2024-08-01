@@ -32,9 +32,9 @@ const ResturantCard = (props) => {
 }</div>
 
         
-          <a href="#" className="card-button">
-           Buy
-          </a>
+         
+
+          <button className="card-button">Buy</button>
         </div>
       </div>
     );

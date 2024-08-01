@@ -2,7 +2,7 @@ import ResturantCard from "./ResturantCards";
 import restaurantList from "../utils/mockdata";
 import { useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
-
+import { Link } from "react-router-dom";
 
 const Body = () => {
 
@@ -17,7 +17,8 @@ const Body = () => {
 
       useEffect(()=>{  // this get executed after the render cycle is finished
         fetchData();
-      },[]);
+        console.log("hi")
+      },[]); 
 
       //if eror delete this
       const fetchData=async()=>{
@@ -25,15 +26,15 @@ const Body = () => {
         console.log(data);
         const json= await data.json();
         console.log(json)
-       console.log(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
+       console.log(json?.data?.cards[3]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
        // Cards[4].card.card.gridElements.infoWithStyle.restaurants[0].info.id
         //now we will rerender the ui with our new data that we have got
 
-        setListOfResturant(json.data.cards[4].card.card.gridElements.infoWithStyle.restaurants)
-        setFilteredResturant(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
+        setListOfResturant(json?.data?.cards[3]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
+        setFilteredResturant(json?.data?.cards[3]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
       }
 
-      if(listOfResturant.length===0){
+      if(listOfResturant.length==0){
         return <Shimmer/>
       }
       
@@ -85,7 +86,7 @@ const Body = () => {
             //in each iteration resturant contain the resturantList objects
   
             return (
-              <ResturantCard key={restaurant.info.id} restData={restaurant} />
+             <Link key={restaurant.info.id} to={"/resturant/"+restaurant.info.id}> <ResturantCard  restData={restaurant} /></Link>
             );
             //<c4> we need to return it, & each card object that it return must have a unique key
           })}
