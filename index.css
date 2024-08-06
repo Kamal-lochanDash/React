@@ -332,6 +332,29 @@ a{
   color: black;
 }
 
+.about-us{
+  width: 100%; /* Full width of the container */
+   
+    background-color: #f0f0f0;
+    position: relative; 
+  
+}
 
-
+.about{
+  padding: 16px;
+  width: 600px;
+  min-height: 300px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  margin: 20px;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  color: #333;
+  margin: 0 auto;
+  margin-bottom: 40px;
+  margin-top: 20px;
+  text-align: center;
+}
 

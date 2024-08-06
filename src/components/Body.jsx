@@ -26,12 +26,12 @@ const Body = () => {
         console.log(data);
         const json= await data.json();
         console.log(json)
-       console.log(json?.data?.cards[3]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
+       console.log(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
        // Cards[4].card.card.gridElements.infoWithStyle.restaurants[0].info.id
         //now we will rerender the ui with our new data that we have got
 
-        setListOfResturant(json?.data?.cards[3]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
-        setFilteredResturant(json?.data?.cards[3]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
+        setListOfResturant(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
+        setFilteredResturant(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
       }
 
       if(listOfResturant.length==0){
