@@ -1,27 +1,18 @@
-import { useEffect } from "react";
-import { useState } from "react";
 import Shimmer from "./Shimmer";
 import { CDN_URL } from "../utils/constant";
 import MenuView from "./MenuView";
 import { useParams } from "react-router-dom";
-import { MENU_API } from "../utils/constant";
+import useResturantMenu from "../utils/useResturantmenu";
+
 
 const ResturantMenu = () => {
-  const [resInfo, setResInfo] = useState(null);
+  
  
   const {resId}=useParams(); //<imp> it returns a object that contain the resId that we have initilised in the index.js page
   
 
-  useEffect(() => {
-    fetchMenu();
-  }, []); // we are using this empty list beacuse we do not want to render the component everTime the component renders,else it will wbe rendered infinite times untiil the web stops
 
-  const fetchMenu = async () => {
-    const data = await fetch(MENU_API+resId);
-    const json = await data.json();
-    console.log(json);
-    setResInfo(json.data);
-  };
+  const resInfo= useResturantMenu(resId)
   if (resInfo === null) {
     return <Shimmer />;
   }else{
