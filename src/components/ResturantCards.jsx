@@ -59,4 +59,26 @@ let cusinesArr=[];
   );
 };
 
+
+//Higher order component
+
+// input-resturant card
+//output - resturant open or not
+
+export const withIsOpenLabel=(ResturantCard)=>{
+  // an higer order function must return a component
+  return (props)=>{
+    // a component must return some jsx
+    return (
+      <div>
+      <label className=" flex absolute bg-black text-lime-400 p-2 m-2 rounded-md">
+        <div className="w-2 h-2 bg-lime-400 mt-2 mr-2 rounded-lg"></div>
+         <div>Open</div>
+         </label>
+      <ResturantCard {...props}/>
+      </div>
+    )
+  }
+}
+
 export default ResturantCard;

@@ -6,3 +6,5 @@ export const LOGO_URL="https://images-platform.99static.com//Ba6VdSQsbU4OpiyQEzL
 //its import mechanism is => import {<name of the exported component> from "< file location>"}
 
 export const MENU_API="https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=20.2960587&lng=85.8245398&restaurantId=";
+
+export const MENU_LIST="https://www.swiggy.com/dapi/restaurants/list/v5?lat=20.2960587&lng=85.8245398&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING";

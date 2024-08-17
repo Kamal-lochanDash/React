@@ -3,17 +3,29 @@ import { CDN_URL } from "../utils/constant";
 import MenuView from "./MenuView";
 import { useParams } from "react-router-dom";
 import useResturantMenu from "../utils/useResturantmenu";
+import NestedMenuView from "./NestedMenuView";
+import useOnlineStatus from "../utils/useOnlineStatus";
+import OfflineStatus from "./OfflineStatus";
+import { useState } from "react";
 
 
 const ResturantMenu = () => {
   
+
+
+  const onlineStatus=useOnlineStatus();
  
   const {resId}=useParams(); //<imp> it returns a object that contain the resId that we have initilised in the index.js page
+  const [showIndex,setShowIndex]=useState(0);
   
 
 
   const resInfo= useResturantMenu(resId)
-  if (resInfo === null) {
+  if(onlineStatus===false){
+    return (
+    <OfflineStatus/>
+    )
+  }else if (resInfo === null) {
     return <Shimmer />;
   }else{
 
@@ -36,50 +48,93 @@ const ResturantMenu = () => {
   console.log(resInfo?.cards[2]?.card?.card?.info?.name);
   console.log(cards)
 
+  const category=cards.filter((currentItem)=>{
+    return currentItem?.card?.card?.["@type"]===
+"type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
+  })
+
+  const category2=cards.filter((currentItem)=>{
+    return currentItem?.card?.card?.["@type"]===
+    "type.googleapis.com/swiggy.presentation.food.v2.NestedItemCategory"
+
+  })
+
+  console.log(category)
+  console.log(category2)
+  
+
   return (
-    <div className="menu-container">
-      <div className="menu-info">
-        <div className="menu-header">
-          <img src={CDN_URL + cloudinaryImageId} alt="" />
-          <h1>{name}</h1>
+    <div className="menu-container w-full relative ">
+      <div className="p-4 w-[770px] min-h-[300px] bg-white border border-gray-300 rounded-xl shadow-md m-5 text-base text-gray-800 mx-auto mb-10 mt-5">
+        <div className="menu-header flex items-center justify-between">
+          <div className="flex items-center">
+          <img src={CDN_URL + cloudinaryImageId} className="h-20 w-20 mb-1 rounded-lg" alt="" />
+          <div>
+          <h1 className="ml-3 font-serif font-bold">{name}</h1>
+          <h4 className="ml-3 flex"><div className="w-2 h-2 rounded-lg bg-red-400 mt-2 mr-2"></div><div className="text-gray-500">{costForTwoMessage}</div></h4>
+          </div>
+          </div>
+          <div className="flex items-center ">
+          <div className="ml-3 w-6 h-6 text-center rounded-xl  ring-1 ring-green-600   bg-[#1c8f37] text-white">
+            ★
+          </div>
+          <div className="ml-2 font-bold">{avgRating + "(" + totalRatingsString + ")"}</div>
+         
+          </div>
+
         </div>
 
         <hr />
         <div className="menu-body">
-          <div className="menu-body-1">
-            <h3>{"⭐️ " + avgRating + " (" + totalRatingsString + ")"}</h3>
-            <h4>{costForTwoMessage}</h4>
+          
+
+          <div className="menu-body-2 ">
+            <p className="text-[#ff6347] no-underline hover:underline">{cuisines.join(",")}</p>
           </div>
 
-          <div className="menu-body-2">
-            <p>{cuisines.join(",")}</p>
-          </div>
-
-          <div className="menu-body-3">
+          <div className="menu-body-3 flex items-center mt-2.5 ml-7.5">
             <h3>Outlet </h3>
-            <p>📍 {areaName}</p>
+            <p className="ml-5 text-[rgb(190,190,190)]">📍 {areaName}</p>
           </div>
 
-          <div className="menu-body-4">
+          <div className="menu-body-4 flex items-center mt-2.5 ml-7.5">
             <h3>Waiting Period</h3>
-            <p>{slaString}</p>
+            <p className="ml-5 text-[rgb(147,147,147)]">{slaString}</p>
           </div>
         </div>
         <hr style={{ marginTop: "20px" }} />
-        <div className="menu-footer">
+        <div className="menu-footer flex items-center mt-2.5 text-[rgb(147,147,147)]">
           <b>{lastMileTravel} Km | </b>
           <p>₹{amount / 100} Dilivery Fees will we applied</p>
         </div>
       </div>
 
       
-        <div className="menu-items">
-            <h2>Menu</h2>
-           {cards.map((card,index)=>{
+        <div className="menu-items text-center">
+            <h2 className="font-bold font-serif text-red-400">Menu</h2>
+           {category.map((card,index)=>{
              return(
-                <MenuView key={index} title={card?.card?.card?.title} itemCards={card?.card?.card?.itemCards}   />
+                <MenuView key={card?.card?.card?.title} 
+                title={card?.card?.card?.title} 
+                itemCards={card?.card?.card?.itemCards} 
+                showItems={index===showIndex?true:false}
+                 setShowIndex={()=>setShowIndex(index)} 
+
+                 hideshowIndex={()=>setShowIndex(false)}
+                 />
             )
            })}
+
+           {
+            category2.map((card,index)=>{
+              return(
+
+                <NestedMenuView key={card?.card?.card?.title} title={card?.card?.card?.title} categories={card?.card?.card?.categories}/>
+              
+              )
+              
+            })
+           }
         </div>
       
     </div>
