@@ -1,15 +1,19 @@
 import Shimmer from "./Shimmer";
 import { CDN_URL } from "../utils/constant";
 import MenuView from "./MenuView";
-import { useParams } from "react-router-dom";
+import { useOutletContext, useParams } from "react-router-dom";
 import useResturantMenu from "../utils/useResturantmenu";
 import NestedMenuView from "./NestedMenuView";
 import useOnlineStatus from "../utils/useOnlineStatus";
 import OfflineStatus from "./OfflineStatus";
 import { useState } from "react";
+import ProfileCard from "./ProfileCard";
 
 
 const ResturantMenu = () => {
+
+
+  const { isCardVisible, handleCloseCard } = useOutletContext();
   
 
 
@@ -136,6 +140,13 @@ const ResturantMenu = () => {
             })
            }
         </div>
+
+
+        <div >
+  {
+  isCardVisible && <ProfileCard onCloseCard={handleCloseCard}/>
+}
+</div>
       
     </div>
   );

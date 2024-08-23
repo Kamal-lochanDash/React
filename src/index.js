@@ -1,4 +1,4 @@
-import React, { lazy , Suspense} from "react";
+import React, { lazy , Suspense, useState} from "react";
 import ReactDOM from "react-dom/client";
 import Header from "./components/Header";
 import Body from "./components/Body";
@@ -9,6 +9,16 @@ import Error from "./components/Error";
 import ResturantMenu from "./components/ResturantMenu";
 import Shimmer from "./components/Shimmer";
 //import Grocery from "./components/Grocery";
+
+import { Provider } from "react-redux"; //--> This provider act as bridge for react app and the redux toolKit
+import appStore from "./utils/appStore";
+
+
+
+
+
+
+ 
 
 
 /*
@@ -40,11 +50,28 @@ const Grocery=lazy(()=>{
 
 */
 const AppLayout = () => {
+
+  const [isCardVisible, setIsCardVisible] = useState(false);
+
+  const handleShowCard = () => {
+    setIsCardVisible(true);
+  };
+
+  const handleCloseCard = () => {
+    setIsCardVisible(false);
+  };
+
+  
+
   return (
+
+    //this step connect the appStore to the react app
+   <Provider store={appStore} >
     <div className="app">
-      <Header />
-      <Outlet/> {/* Outlet is filled according to the path choosen in the browser */}
+      <Header  onShowCard={handleShowCard}  />
+      <Outlet  context={{ isCardVisible, handleCloseCard }}/> {/* Outlet is filled according to the path choosen in the browser */}
     </div>
+    </Provider>
   );
 };
 
@@ -58,7 +85,7 @@ const appRout = createBrowserRouter([
 
       {
         path:"/",
-        element:<Body/>,
+        element:<Body />,
         errorElement:<Error/>
       },
 

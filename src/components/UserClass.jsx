@@ -1,5 +1,6 @@
 import React from "react";
 import { json } from "react-router-dom";
+import UserContext from "../utils/UserContext";
 
 
 class UserClass extends React.Component{  // Component is class inside the react
@@ -92,7 +93,15 @@ componentWillUnmount(){
        
         <h3>Location:{this.state.userInfo.location}</h3>
         <h4>Contact: kamaldash.2004@gmail.com</h4>
-        <h4></h4>
+        <h4>
+            LoggedIn User:<UserContext.Consumer>
+                {(data)=>{ //! here the "data" contains the context info as an object
+                    console.log(data)
+                    return data.loggedInUser;
+                }}
+            </UserContext.Consumer>{/* This is how we use context in the class based components */}
+
+        </h4>
     </div>);
     }
 }
