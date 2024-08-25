@@ -23,3 +23,14 @@
   - slice (cartSlice)
   - dispatch(action)
   - Selector
+
+
+  # Types of testing(for Developer)
+  - unit testing
+  - Integration testing
+  - End to end testing => e2e Testing
+
+  # Libriries for testing
+  - React - testing library
+  --> it is build on top of dom testing library
+  --> it uses jest for testing (it is a javaScript testing frame work) 

@@ -9,7 +9,7 @@ const cartSlice=createSlice({
         addItem:( state,action)=>{
             //this is the reducer function where  as the addItem is the action
             // it gets access to two parameters 1.state 2.action , state refers to the initialState of the store
-            //here we are mutating the state
+            //here we are mutating the state 
             state.items.push(action.payload)
 
         },

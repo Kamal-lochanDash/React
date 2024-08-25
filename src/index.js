@@ -12,6 +12,7 @@ import Shimmer from "./components/Shimmer";
 
 import { Provider } from "react-redux"; //--> This provider act as bridge for react app and the redux toolKit
 import appStore from "./utils/appStore";
+import Cart from "./components/Cart";
 
 
 
@@ -111,6 +112,13 @@ const appRout = createBrowserRouter([
         path:"/resturant/:resId" ,    //here resId is the dyanamic data that changes according to the resturant clicked
         element:<ResturantMenu/>,
         errorElement:<Error/>
+      },
+
+      {
+        path:"/cart",
+        element:<Cart/>,
+        errorElement:<Error/>
+
       }
 
     ],
